@@ -29,7 +29,7 @@ class RoomCellViewModel: ObservableObject {
                             self.image.append(image)
                         }
                     } else if let error = error {
-                        //print(error)
+                        print(error)
                     }
                 }.resume()
             }

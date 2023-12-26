@@ -10,20 +10,22 @@ import SwiftUI
 struct RoomCell: View {
     @StateObject var viewModel: RoomCellViewModel
     @State private var showReservation = false
+    @State private var selectedIndex = 0
     
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: 10) {
-                
-                TabView {
-                    ForEach(viewModel.image, id: \.self) { image in
-                        Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
-                    }
-                }
-                
-                .frame(height: 260)
-                    .tabViewStyle(.page)
-                    .cornerRadius(12)
+                RectangleView(images: $viewModel.image)
+                //RectangleView(selectedIndex: $selectedIndex, images: $viewModel.image)
+//                TabView {
+//                    ForEach(viewModel.image, id: \.self) { image in
+//                        Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
+//                    }
+//                }
+//                
+//                .frame(height: 260)
+//                    .tabViewStyle(.page)
+//                    .cornerRadius(12)
                 
                 Text(viewModel.position.name).font(.custom("SFProDisplay-Medium", size: 22)).fontWeight(.medium)
                 

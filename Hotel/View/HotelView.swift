@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HotelView: View {
     @StateObject var viewModel = HotelViewModel()
-    
+    @State private var selectedIndex = 0
     @State private var showNumber = false
     @State private var showRooms = false
     var body: some View {
@@ -28,18 +28,20 @@ struct HotelView: View {
 
                 Section {
                     VStack(alignment: .leading, spacing: 10) {
-                        TabView {
-                            if viewModel.image.isEmpty {
-                                ProgressView()
-                            } else {
-                                ForEach(viewModel.image, id: \.self) { image in
-                                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
-                                }
-                            }
-                        }.frame(height: 260)
-                            .tabViewStyle(.page)
-                            .cornerRadius(12)
-                            .padding(.bottom, 8)
+                        RectangleView(images: $viewModel.image)
+                        //RectangleView(selectedIndex: $selectedIndex, images: $viewModel.image)
+//                        TabView {
+//                            if viewModel.image.isEmpty {
+//                                ProgressView()
+//                            } else {
+//                                ForEach(viewModel.image, id: \.self) { image in
+//                                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
+//                                }
+//                            }
+//                        }.frame(height: 260)
+//                            .tabViewStyle(.page)
+//                            .cornerRadius(12)
+//                            .padding(.bottom, 8)
                         
                         Label("\(String(viewModel.currentHotel.rating)) \(viewModel.currentHotel.ratingName)", systemImage: "star.fill").font(.custom("SFProDisplay-Medium", size: 16)).fontWeight(.medium)
                             .padding(.vertical, 6)

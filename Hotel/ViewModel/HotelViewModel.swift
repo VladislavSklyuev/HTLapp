@@ -51,7 +51,7 @@ class HotelViewModel: ObservableObject {
                             self.image.append(image)
                         }
                     } else if let error = error {
-                        //print(error)
+                        print(error)
                     }
                     group.leave()
                 }.resume()
