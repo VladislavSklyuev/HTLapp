@@ -13,16 +13,11 @@ struct TouristCell: View {
     
     @State  private var name: String = ""
     @State  private var index: Int?
-//    @Binding var lastName: String
-//    @Binding var dateOfBirth: String
-//    @Binding var citizenship: String
-//    @Binding var passportNumber: String
-//    @Binding var passportDate: String
     
     var body: some View {
         Section {
             if viewModelRV.tourists.isEmpty {
-                
+                EmptyView()
             } else {
                 
                 ForEach(viewModelRV.tourists) { tur in
@@ -86,8 +81,6 @@ struct TouristCell: View {
                 
         }.background(.white).cornerRadius(12)
     }
-    
-
 }
 
 //#Preview {

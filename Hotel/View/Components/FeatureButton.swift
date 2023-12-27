@@ -13,7 +13,6 @@ struct FeatureButton: View {
     let hasDivider: Bool
     
     var body: some View {
-
         
             HStack(spacing: 16) {
                 Image(image)
@@ -33,11 +32,8 @@ struct FeatureButton: View {
                     if hasDivider {
                         Divider()
                     }
-                
                 }
-                
             }
-
         }
     }
 

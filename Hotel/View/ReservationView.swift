@@ -91,7 +91,7 @@ struct ReservationView: View {
                             //}
                         }.padding().frame(maxWidth: .infinity)
                         
-                    }.background(.white).cornerRadius(12)//ДАННЫЕ ТУРА - В ОТДЕЛЬНУЮ СТРУКТУРУ?
+                    }.background(.white).cornerRadius(12)//ДАННЫЕ ТУРА
                     Section {
                         VStack(alignment: .leading) {
                             HStack {
@@ -124,7 +124,7 @@ struct ReservationView: View {
                             }.padding(.vertical, 6).foregroundStyle(.gray)
                         }.padding().frame(maxWidth: .infinity)
                     }.background(.white).cornerRadius(12)//ИНФО О ПОКУПАТЕЛЕ
-                    TouristCell().environmentObject(viewModel)//-ТУРИСТЫ, не на всех ячейках отображается некорректный ввод
+                    TouristCell().environmentObject(viewModel)//-ТУРИСТЫ
                     Section {
                         VStack(alignment: .leading) {
                             HStack {
@@ -202,17 +202,3 @@ struct ReservationView: View {
     ReservationView()
 }
 
-//Section {
-//    NavigationLink {
-//        NumberView()
-//    } label: {
-//        Text("К выбору номера")
-//            .frame(height: 42)
-//            .frame(maxWidth: .infinity)
-//            .background(.blue)
-//            .foregroundStyle(.white)
-//            .cornerRadius(12)
-//            .padding()
-//    }
-//
-//}.background(.white)

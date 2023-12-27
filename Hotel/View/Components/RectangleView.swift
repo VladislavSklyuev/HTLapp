@@ -43,7 +43,6 @@ struct RectangleView: View {
                                 
                                 ForEach(0..<2) { index in
                                     Circle()
-
                                         .fill(self.index == index ? Color.black : Color.gray)
                                         .frame(width: 7, height: 7)
                                 }
@@ -71,8 +70,6 @@ struct RectangleView: View {
                                 Circle()
                                     .fill(.black.opacity(0.05))
                                     .frame(width: 7, height: 7)
-
-                                
                             }.padding(.vertical, 5).padding(.horizontal, 10).background(.white).cornerRadius(5).offset(y: 110)
                         }
                     }

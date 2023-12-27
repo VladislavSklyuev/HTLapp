@@ -37,9 +37,6 @@ struct OrderView: View {
                         }
                     }
                 }
-            
-                
-
         }
         .fullScreenCover(isPresented: $goHotel) {
                 HotelView()

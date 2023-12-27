@@ -29,19 +29,6 @@ struct HotelView: View {
                 Section {
                     VStack(alignment: .leading, spacing: 10) {
                         RectangleView(images: $viewModel.image)
-                        //RectangleView(selectedIndex: $selectedIndex, images: $viewModel.image)
-//                        TabView {
-//                            if viewModel.image.isEmpty {
-//                                ProgressView()
-//                            } else {
-//                                ForEach(viewModel.image, id: \.self) { image in
-//                                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
-//                                }
-//                            }
-//                        }.frame(height: 260)
-//                            .tabViewStyle(.page)
-//                            .cornerRadius(12)
-//                            .padding(.bottom, 8)
                         
                         Label("\(String(viewModel.currentHotel.rating)) \(viewModel.currentHotel.ratingName)", systemImage: "star.fill").font(.custom("SFProDisplay-Medium", size: 16)).fontWeight(.medium)
                             .padding(.vertical, 6)
@@ -105,7 +92,6 @@ struct HotelView: View {
 
                 }.background(.white)
             }
-            //.onAppear(perform:viewModel.downLoadPhoto)
             .background(Color("backGray"))
         }
         .background(.white)
