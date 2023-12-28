@@ -186,16 +186,16 @@ class ReservationViewModel: ObservableObject {
 //            self.inputSuccessfully = false
 //            self.inputError = true
 //        }
-        checkMail(mail: self.mail)
         
+        checkMail(mail: self.mail)
         tourists.forEach { tourist in
-            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || mail == "" /*|| phoneComplete == false*/ {
+            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || inputError /*|| phoneComplete == false*/ {
                 print(tourist)
                 print(mail)
-                
                     self.inputSuccessfully = false
                 
             } else {
+                
                     self.inputSuccessfully = true
             }
         }
