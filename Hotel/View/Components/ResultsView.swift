@@ -24,7 +24,7 @@ struct ResultsView: View {
                     Text("\(String(viewModelRV.reservation!.tourPrice)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
                     Text("\(String(viewModelRV.reservation!.fuelCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
                     Text("\(String(viewModelRV.reservation!.serviceCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("\(String(viewModelRV.totalAmount)) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.blue)
+                    Text("\(String(viewModelRV.totalAmount.formatted())) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.blue)
                     
                 }.padding(.trailing).bold()
             }.padding().frame(maxWidth: .infinity)

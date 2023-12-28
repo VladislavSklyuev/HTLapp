@@ -14,6 +14,10 @@ struct ReservationView: View {
     @FocusState private var isFocused: Bool
     @FocusState private var isFocused2: Bool
     
+//    @State private var phone: String = "+7(***)***-**-**"
+//    @State private var myPhone: String = "+7(***)***-**-**"
+//    @State private var i = 3
+    
     @State private var mail = ""
     
     var body: some View {
