@@ -10,14 +10,11 @@ import SwiftUI
 struct ReservationView: View {
     @Environment (\.dismiss) var dismiss
     @StateObject var viewModel = ReservationViewModel()
+    
     @FocusState private var isFocused: Bool
+    @FocusState private var isFocused2: Bool
+    
     @State private var mail = ""
-    
-    @State private var showFirstTourist = true
-    @State private var showSecondTourist = false
-    
-    @State private var look = false
-    @State private var tourists: [Tourist] = []
     
     var body: some View {
         if viewModel.reservation == nil {
@@ -42,120 +39,14 @@ struct ReservationView: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
-                    Section {
-                        VStack(alignment: .leading, spacing: 10) {
-                            HStack {
-                                Label("\(String(viewModel.reservation!.horating)) \(viewModel.reservation!.ratingName)", systemImage: "star.fill").font(.custom("SFProDisplay-Medium", size: 16))
-                                    .padding(.vertical, 6)
-                                    .padding(.horizontal, 8)
-                                    .background(Color("lightYellow"))
-                                    .cornerRadius(6)
-                                    .foregroundStyle(Color("brightYellow"))
-                                Spacer()
-                            }
-                            Text(viewModel.reservation!.hotelName).font(.custom("SFProDisplay-Medium", size: 22))
-                            
-                            Button {
-                                
-                            } label: {
-                                Text(viewModel.reservation!.hotelAdress).font(.custom("SFProDisplay-Medium", size: 14))
-                            }
-                            
-                        }.padding().frame(maxWidth: .infinity)
-                        
-                    }.background(.white).cornerRadius(12).padding(.top, 10)
-                    Section {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("Вылет из").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Страна, город").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Даты").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Кол-во ночей").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Отель").font(.custom("SFProDisplay-Medium", size: 16)).padding(.bottom, 10)
-                                Text("Номер").font(.custom("SFProDisplay-Medium", size: 16)).padding(.bottom, 10)
-                                Text("Питание").font(.custom("SFProDisplay-Medium", size: 16))
-                            }.foregroundStyle(.gray)
-                            Spacer()
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text(viewModel.reservation!.departure).font(.custom("SFProDisplay-Medium", size: 16))
-                                Text(viewModel.reservation!.arrivalCountry).font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("\(viewModel.reservation!.tourDateStart) - \(viewModel.reservation!.tourDateStop)").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("\(String(viewModel.reservation!.numberOfNights)) ночей").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text(viewModel.reservation!.hotelName).font(.custom("SFProDisplay-Medium", size: 16))
-                                Text(viewModel.reservation!.room).font(.custom("SFProDisplay-Medium", size: 16))
-                                Text(viewModel.reservation!.nutrition).font(.custom("SFProDisplay-Medium", size: 16))
-                            }.padding(.leading, 30)
-                        }.padding().frame(maxWidth: .infinity)
-                        
-                    }.background(.white).cornerRadius(12)//ДАННЫЕ ТУРА
-                    Section {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("Информация о покупателе").font(.custom("SFProDisplay-Medium", size: 22))
-                                Spacer()
-                            }.padding(.bottom, 10)
-                            VStack(alignment: .leading, spacing: 1) {
-                                    Text("Номер телефона").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
-                                    
-                                MaskedTextField(
-                                    text: $viewModel.numberPhone,
-                                    value: $viewModel.phoneValue,
-                                    complete: $viewModel.phoneComplete,
-                                    placeholder: "+7 (***) ***_**_**",
-                                    mask: "+7 ([000]) [000]-[00]-[00]"
-                                )
-                            }.padding(10).background(!viewModel.phoneComplete ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text("Почта").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $mail).font(.custom("SFProDisplay-Medium", size: 16))
-                                    .focused($isFocused)
-                                    .onSubmit {
-                                        viewModel.checkMail(string: mail)
-                                        isFocused = false
-                                    }
-                            }.padding(10).background(viewModel.inputError ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
-                            HStack {
-                                Text("Эти данные никому не передаются. После оплаты мы вышлим чек на указанные вами номер и почту").font(.custom("SFProDisplay-Medium", size: 14))
-                            }.padding(.vertical, 6).foregroundStyle(.gray)
-                        }.padding().frame(maxWidth: .infinity)
-                    }.background(.white).cornerRadius(12)//ИНФО О ПОКУПАТЕЛЕ
-                    TouristCell().environmentObject(viewModel)//-ТУРИСТЫ
-                    Section {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("Добавить туриста").font(.custom("SFProDisplay-Medium", size: 22))
-                                Spacer()
-                                Button {
-                                    viewModel.addTourist()
-                                } label: {
-                                    VStack {
-                                        Image(systemName: "plus").foregroundStyle(.white).fontWeight(.semibold)
-                                    }.frame(width: 30, height: 30).background(Color(red: 0.05, green: 0.45, blue: 1)).cornerRadius(6)
-                                }
-                            }
-                        }.padding().frame(maxWidth: .infinity)
-                    }.background(.white).cornerRadius(12)//-ДОБАВИТЬ ТУРИСТА
-                    
-                    Section {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("Тур").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Топливный сбор").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("Сервисный сбор").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("К оплате").font(.custom("SFProDisplay-Medium", size: 16))
-                                
-                            }.foregroundStyle(.gray)
-                            Spacer()
-                            VStack(alignment: .trailing, spacing: 20) {
-                                Text("\(String(viewModel.reservation!.tourPrice)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("\(String(viewModel.reservation!.fuelCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("\(String(viewModel.reservation!.serviceCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                                Text("\(String(viewModel.totalAmount)) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.blue)
-                                
-                            }.padding(.trailing).bold()
-                        }.padding().frame(maxWidth: .infinity)
-            
-                    }.background(.white).cornerRadius(12)//-ИТОГИ
+                    HotelInfoView().environmentObject(viewModel)// - ДАННЫЕ ОТЕЛЯ
+                    TourInfoView().environmentObject(viewModel)// - ДАННЫЕ ТУРА
+                    BuyerInfoView(mail: $mail).environmentObject(viewModel)// - ИНФО О ПОКУПАТЕЛЕ
+                        .focused($isFocused)
+                    TouristCell().environmentObject(viewModel)// - ТУРИСТЫ
+                        .focused($isFocused2)
+                    AddingATourist().environmentObject(viewModel)//-ДОБАВЛЕНИЕ ТУРИСТА
+                    ResultsView().environmentObject(viewModel)//-ИТОГИ
                     Section {
                         VStack {
                             Button {
@@ -169,6 +60,15 @@ struct ReservationView: View {
                     }.background(.white).cornerRadius(12)//-ОПЛАТА
                 }.frame(maxWidth: .infinity)
                     .background(Color("backGray"))
+
+            }
+            .onTapGesture {
+                isFocused = false
+                isFocused2 = false
+                guard isFocused else { return }
+                viewModel.checkMail(mail: mail)
+                
+                //UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()

@@ -100,8 +100,8 @@ class ReservationViewModel: ObservableObject {
         }
     }
     
-    func checkMail(string: String) {
-        let string = string
+    func checkMail(mail: String) {
+        let string = mail
         guard string.contains("@") else { print("Нет собачки")
             inputError = true
             self.mail = ""
@@ -123,8 +123,8 @@ class ReservationViewModel: ObservableObject {
             return
         }
         
-        
-        guard prefix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
+        let invalidCharacters = CharacterSet.alphanumerics.inverted
+        guard prefix.rangeOfCharacter(from: invalidCharacters) == nil else { print("Некорректный символ")
             inputError = true
             self.mail = ""
             return
@@ -146,7 +146,7 @@ class ReservationViewModel: ObservableObject {
             self.mail = ""
             return
         }
-        guard smallPrefix.allSatisfy({$0.isLetter}) && smallSuffix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
+        guard smallPrefix.rangeOfCharacter(from: invalidCharacters) == nil && smallSuffix.rangeOfCharacter(from: invalidCharacters) == nil else { print("Некорректный символ")
             inputError = true
             self.mail = ""
             return
@@ -178,16 +178,18 @@ class ReservationViewModel: ObservableObject {
     func pay() {
         checkTF()
         //print(checkTextField)
-        if phoneValue.count < 10 {
-            self.phoneComplete = false
-            self.inputSuccessfully = false
-        }
-        if mail == "" {
-            self.inputSuccessfully = false
-            self.inputError = true
-        }
+//        if phoneValue.count < 10 {
+//            self.phoneComplete = false
+//            self.inputSuccessfully = false
+//        }
+//        if mail == "" {
+//            self.inputSuccessfully = false
+//            self.inputError = true
+//        }
+        checkMail(mail: self.mail)
+        
         tourists.forEach { tourist in
-            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || mail == "" || phoneComplete == false {
+            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || mail == "" /*|| phoneComplete == false*/ {
                 print(tourist)
                 print(mail)
                 
