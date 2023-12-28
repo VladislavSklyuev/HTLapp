@@ -66,7 +66,6 @@ struct ReservationView: View {
                     }.background(.white).cornerRadius(12).padding(.top, 10)
                     Section {
                         HStack {
-                            //HStack {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text("Вылет из").font(.custom("SFProDisplay-Medium", size: 16))
                                 Text("Страна, город").font(.custom("SFProDisplay-Medium", size: 16))
@@ -76,9 +75,7 @@ struct ReservationView: View {
                                 Text("Номер").font(.custom("SFProDisplay-Medium", size: 16)).padding(.bottom, 10)
                                 Text("Питание").font(.custom("SFProDisplay-Medium", size: 16))
                             }.foregroundStyle(.gray)
-                            //}
                             Spacer()
-                            //HStack {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text(viewModel.reservation!.departure).font(.custom("SFProDisplay-Medium", size: 16))
                                 Text(viewModel.reservation!.arrivalCountry).font(.custom("SFProDisplay-Medium", size: 16))
@@ -88,7 +85,6 @@ struct ReservationView: View {
                                 Text(viewModel.reservation!.room).font(.custom("SFProDisplay-Medium", size: 16))
                                 Text(viewModel.reservation!.nutrition).font(.custom("SFProDisplay-Medium", size: 16))
                             }.padding(.leading, 30)
-                            //}
                         }.padding().frame(maxWidth: .infinity)
                         
                     }.background(.white).cornerRadius(12)//ДАННЫЕ ТУРА
@@ -108,7 +104,6 @@ struct ReservationView: View {
                                     placeholder: "+7 (***) ***_**_**",
                                     mask: "+7 ([000]) [000]-[00]-[00]"
                                 )
-                                //TextField("", text: $numberPhone).font(.custom("SFProDisplay-Medium", size: 16))
                             }.padding(10).background(!viewModel.phoneComplete ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text("Почта").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
@@ -143,7 +138,6 @@ struct ReservationView: View {
                     
                     Section {
                         HStack {
-                            //HStack {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text("Тур").font(.custom("SFProDisplay-Medium", size: 16))
                                 Text("Топливный сбор").font(.custom("SFProDisplay-Medium", size: 16))
@@ -151,9 +145,7 @@ struct ReservationView: View {
                                 Text("К оплате").font(.custom("SFProDisplay-Medium", size: 16))
                                 
                             }.foregroundStyle(.gray)
-                            //}
                             Spacer()
-                            //HStack {
                             VStack(alignment: .trailing, spacing: 20) {
                                 Text("\(String(viewModel.reservation!.tourPrice)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
                                 Text("\(String(viewModel.reservation!.fuelCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
@@ -161,8 +153,6 @@ struct ReservationView: View {
                                 Text("\(String(viewModel.totalAmount)) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.blue)
                                 
                             }.padding(.trailing).bold()
-                                
-                            //}
                         }.padding().frame(maxWidth: .infinity)
             
                     }.background(.white).cornerRadius(12)//-ИТОГИ
@@ -184,21 +174,6 @@ struct ReservationView: View {
                 OrderView()
             }
             .background(.white)
-//            .navigationBarBackButtonHidden()
-//            .navigationTitle("Бронирование")
-//            .toolbar {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "chevron.backward").foregroundStyle(.black).fontWeight(.semibold)
-//                    }
-//                }
-//            }
         }
     }
 }
-#Preview {
-    ReservationView()
-}
-

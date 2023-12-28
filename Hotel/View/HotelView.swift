@@ -100,9 +100,3 @@ struct HotelView: View {
         }
     }
 }
-
-#Preview {
-    NavigationView {
-        HotelView()
-    }
-}

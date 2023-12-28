@@ -82,7 +82,3 @@ struct TouristCell: View {
         }.background(.white).cornerRadius(12)
     }
 }
-
-//#Preview {
-//    AddedTouristCell()
-//}

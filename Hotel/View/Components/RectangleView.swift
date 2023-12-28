@@ -20,7 +20,6 @@ struct RectangleView: View {
                 Image(uiImage: images[index])
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    //.scaledToFit()
                     .gesture(
                         DragGesture(minimumDistance: 50)
                             .onEnded { value in
@@ -80,38 +79,4 @@ struct RectangleView: View {
         .cornerRadius(12)
         .padding(.bottom, 8)
     }
-    
-//    var body: some View {
-//        TabView(selection: $selectedIndex) {
-//            if images.isEmpty {
-//                ProgressView()
-//            } else {
-//                ForEach(images, id: \.self) { image in
-//                    Image(uiImage: image)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        //.tag(index)
-//                }
-//            }
-//        }
-//        .tabViewStyle(.page(indexDisplayMode: .never))
-//        .frame(height: 260)
-//        .cornerRadius(12)
-//        .padding(.bottom, 8)
-//
-//        .overlay {
-//            HStack(spacing: 5) {
-//                ForEach(0..<5) { index in
-//                    Circle()
-//                        .fill(selectedIndex == index ? Color.blue : Color.gray)
-//                        .frame(width: 7, height: 7)
-//                }
-//            }.padding(.vertical, 5).padding(.horizontal, 10).background(.white).cornerRadius(5).offset(y: 110)
-//        }
-//
-//    }
 }
-
-//#Preview {
-//    RectangleView()
-//}

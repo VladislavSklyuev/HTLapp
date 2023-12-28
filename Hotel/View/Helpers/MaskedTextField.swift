@@ -33,7 +33,7 @@ struct MaskedTextField: View {
         .onSubmit { textField in
             textField.resignFirstResponder()
         }
-        .onChange(of: text) { newValue in
+        .onChange(of: text) { newValue, oldValue in
             print("\nTEXT: \(text)\nVALUE: \(value)\nCOMPLETE: \(complete)")
         }
     }

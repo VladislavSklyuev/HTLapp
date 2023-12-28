@@ -42,14 +42,6 @@ struct RoomsView: View {
                 }.background(Color("backGray"))
             }
             .background(.white)
-//            .navigationBarBackButtonHidden()
-//            .navigationTitle(hotelViewModel.currentHotel.name)
-//            .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
-}
-
-#Preview {
-    RoomsView()
 }

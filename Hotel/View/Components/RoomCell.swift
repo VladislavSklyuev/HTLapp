@@ -16,16 +16,6 @@ struct RoomCell: View {
         Section {
             VStack(alignment: .leading, spacing: 10) {
                 RectangleView(images: $viewModel.image)
-                //RectangleView(selectedIndex: $selectedIndex, images: $viewModel.image)
-//                TabView {
-//                    ForEach(viewModel.image, id: \.self) { image in
-//                        Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
-//                    }
-//                }
-//                
-//                .frame(height: 260)
-//                    .tabViewStyle(.page)
-//                    .cornerRadius(12)
                 
                 Text(viewModel.position.name).font(.custom("SFProDisplay-Medium", size: 22)).fontWeight(.medium)
                 
@@ -58,7 +48,6 @@ struct RoomCell: View {
                         .background(.blue)
                         .foregroundStyle(.white)
                         .cornerRadius(12)
-                        //.padding()
                 }
             }.padding()
 
@@ -71,8 +60,4 @@ struct RoomCell: View {
                 ReservationView()
             }
     }
-}
-
-#Preview {
-    RoomCell(viewModel: RoomCellViewModel(position: .init(id: 1, name: "HILTON", price: 234532, pricePer: "За сутки без кровати", peculiarities: ["Лучший отель", "Проводной интернет"], imageUrls: ["https://www.atorus.ru/sites/default/files/upload/image/News/56871/%D1%80%D0%B8%D0%BA%D1%81%D0%BE%D1%81%20%D1%81%D0%B8%D0%B3%D0%B5%D0%B9%D1%82.jpg"])))
 }

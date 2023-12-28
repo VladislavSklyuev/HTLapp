@@ -28,7 +28,7 @@ class ReservationViewModel: ObservableObject {
     func fetchReservation() {
         Task {
             do {
-                let reservation = try await NetworkService.shared.getReservation()
+                let reservation: Reservation = try await NetworkService.shared.fetchingData(url: currentURL.reservation.rawValue)
                 DispatchQueue.main.async {
                     self.reservation = reservation
                     self.calculateTheTotal()

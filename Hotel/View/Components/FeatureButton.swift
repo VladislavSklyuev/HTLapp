@@ -36,8 +36,3 @@ struct FeatureButton: View {
             }
         }
     }
-
-
-#Preview {
-    FeatureButton(image: "checkmark.square", title: "Удобства", subtitle: "Самое необходимое", hasDivider: true)
-}

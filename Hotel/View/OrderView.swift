@@ -43,7 +43,3 @@ struct OrderView: View {
         }
     }
 }
-
-#Preview {
-    OrderView()
-}
