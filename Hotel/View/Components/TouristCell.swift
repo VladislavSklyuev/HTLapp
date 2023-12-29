@@ -38,8 +38,13 @@ struct TouristCell: View {
                             VStack(alignment: .leading, spacing: 1) {
                                 Text("Имя").font(.system(size: 12)).foregroundStyle(.gray)
                                 TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name).font(.custom("SFProDisplay-Medium", size: 16))
+                                
+//                                    .onChange(of: viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name) { oldValue, newValue in
+//
+//                                }
                                     
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![1] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                            
                             VStack(alignment: .leading, spacing: 1) {
                                 Text("Фамилия").font(.system(size: 12)).foregroundStyle(.gray)
                                 TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].lastName).font(.custom("SFProDisplay-Medium", size: 16))

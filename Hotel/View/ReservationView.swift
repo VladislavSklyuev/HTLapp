@@ -62,7 +62,7 @@ struct ReservationView: View {
                     }.background(.white).cornerRadius(12)//-ОПЛАТА
                 }.frame(maxWidth: .infinity)
                     .background(Color("backGray"))
-            }
+            }.background(.white)
             .onTapGesture {
                 isFocused = false
                 isFocused2 = false
@@ -72,7 +72,13 @@ struct ReservationView: View {
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()
             }
-            .background(.white)
+            .alert("Ошибка!", isPresented: $viewModel.inputErrorTF) {
+                Button("Ок", role: .cancel) {
+                    viewModel.inputErrorTF = false
+                }
+            } message: {
+                Text("Все данные необходимо заполнить")
+            }  
         }
     }
 }

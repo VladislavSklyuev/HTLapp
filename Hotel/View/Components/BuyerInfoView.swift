@@ -30,7 +30,7 @@ struct BuyerInfoView: View {
                         .onChange(of: mail) { oldValue, newValue in
                             viewModelRV.checkMail(mail: newValue)
                         }
-                }.padding(10).background(viewModelRV.inputError ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
+                }.padding(10).background(viewModelRV.inputErrorMail ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
                 HStack {
                     Text("Эти данные никому не передаются. После оплаты мы вышлим чек на указанные вами номер и почту").font(.custom("SFProDisplay-Medium", size: 14))
                 }.padding(.vertical, 6).foregroundStyle(.gray)

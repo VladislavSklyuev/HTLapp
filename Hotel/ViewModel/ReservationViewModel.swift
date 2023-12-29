@@ -17,7 +17,8 @@ class ReservationViewModel: ObservableObject {
     @Published var checkTextField: [Int:[Int:String]] = [0:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"], 1:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]]
     
     @Published var tourists: [Tourist] = [Tourist(showContent: true, position: "Первый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: ""), Tourist(showContent: false, position: "Второй турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")]
-    @Published var inputError = false
+    @Published var inputErrorMail = false
+    @Published var inputErrorTF = false
     @Published var inputSuccessfully = false
     @Published var totalAmount: Int = 0
     
@@ -100,13 +101,13 @@ class ReservationViewModel: ObservableObject {
         let invalidCharacters = CharacterSet.alphanumerics.inverted
         
         guard string.contains("@") else { print("Нет собачки")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
         guard string.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil else { print("Русский символ недопустим!")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
@@ -116,19 +117,19 @@ class ReservationViewModel: ObservableObject {
         let prefix = string.prefix(upTo: range!.lowerBound)
         
         guard prefix.count >= 2 && suffix.count >= 5 else { print("Короткий префикс или суфикс")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
         guard prefix.rangeOfCharacter(from: invalidCharacters) == nil else { print("Некорректный символ")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
         guard suffix.contains(".") else { print("Нет точки")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
@@ -141,19 +142,19 @@ class ReservationViewModel: ObservableObject {
         let smallSuffix = smallString.suffix(from: rangeSuffix!.upperBound)
         let smallPrefix = smallString.prefix(upTo: rangeSuffix!.lowerBound)
         guard smallPrefix.count >= 2 && smallSuffix.count >= 2 else { print("Короткий подсуффикс или подпреффикс")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
         guard smallSuffix.allSatisfy({$0.isLetter}) && smallPrefix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
 
         print("p2: \(smallPrefix) s2: \(smallSuffix)")
-        inputError = false
+        inputErrorMail = false
         self.mail = string
         print(mail)
     }
@@ -186,8 +187,11 @@ class ReservationViewModel: ObservableObject {
 //        }
         
         for i in 0..<tourists.count {
-            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" else { return }
+            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" else {
+                inputErrorTF = true
+                return
             }
+        }
         self.inputSuccessfully = true
         }
 }
