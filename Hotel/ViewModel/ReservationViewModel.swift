@@ -106,7 +106,13 @@ class ReservationViewModel: ObservableObject {
         let suffix = string.suffix(from: range!.upperBound)
         let prefix = string.prefix(upTo: range!.lowerBound)
         
-        guard prefix.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil && suffix.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil else { print("Русский символ недопустим!")
+        guard string.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil else { print("Русский символ недопустим!")
+            inputError = true
+            self.mail = ""
+            return
+        }
+        
+        guard !suffix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
             inputError = true
             self.mail = ""
             return
@@ -131,21 +137,20 @@ class ReservationViewModel: ObservableObject {
             return
         }
         
+
+        
         let smallString = String(suffix)
         let rangeSuffix = smallString.range(of: ".")
 
         let smallSuffix = smallString.suffix(from: rangeSuffix!.upperBound)
         let smallPrefix = smallString.prefix(upTo: rangeSuffix!.lowerBound)
-        guard smallPrefix.count >= 2 && smallSuffix.count >= 2 else { print("Короткий подсуффикс или подпрефикс")
+        guard smallPrefix.count >= 2 && smallSuffix.count >= 2 else { print("Короткий подсуффикс или подпреффикс")
             inputError = true
             self.mail = ""
             return
         }
-        guard smallPrefix.rangeOfCharacter(from: invalidCharacters) == nil && smallSuffix.rangeOfCharacter(from: invalidCharacters) == nil else { print("Некорректный символ")
-            inputError = true
-            self.mail = ""
-            return
-        }
+        
+
         print("p2: \(smallPrefix) s2: \(smallSuffix)")
         inputError = false
         self.mail = string
