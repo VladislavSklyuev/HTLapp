@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ResultsView: View {
+    
     @EnvironmentObject var viewModelRV: ReservationViewModel
+    
+    let info = ["Тур", "Топливный сбор", "Сервисный сбор", "К оплате"]
+    
     var body: some View {
         Section {
             HStack {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("Тур").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("Топливный сбор").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("Сервисный сбор").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("К оплате").font(.custom("SFProDisplay-Medium", size: 16))
-                    
+                    ForEach(info, id: \.self) { text in
+                        Text(text).font(.custom("SFProDisplay-Medium", size: 16))
+                    }
                 }.foregroundStyle(.gray)
                 Spacer()
                 VStack(alignment: .trailing, spacing: 20) {

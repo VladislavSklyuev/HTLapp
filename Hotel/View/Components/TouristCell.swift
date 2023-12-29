@@ -23,7 +23,6 @@ struct TouristCell: View {
                 
                 ForEach(viewModelRV.tourists) { tur in
                     if tur.showContent {
-                    //if show {
                         VStack(alignment: .leading) {
                             HStack {
                                 Text(tur.position).font(.custom("SFProDisplay-Medium", size: 22))

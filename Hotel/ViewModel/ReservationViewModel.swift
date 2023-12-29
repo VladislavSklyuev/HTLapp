@@ -42,7 +42,6 @@ class ReservationViewModel: ObservableObject {
     func indexSearch(id: UUID) -> Int? {
         let arr = self.tourists
         if let index = arr.firstIndex(where: { $0.id == id }) {
-            //print(index)
             return index
         }
         return nil
@@ -52,11 +51,7 @@ class ReservationViewModel: ObservableObject {
         if let index = indexSearch(id: id) {
             self.tourists[index].showContent.toggle()
         }
-//        }
-        //print(id)
-        print(tourists)
     }
-    
     
     func addTourist() {
         switch tourists.count {
@@ -177,27 +172,16 @@ class ReservationViewModel: ObservableObject {
     
     func pay() {
         checkTF()
-        //print(checkTextField)
+        checkMail(mail: self.mail)
+        
 //        if phoneValue.count < 10 {
 //            self.phoneComplete = false
 //            self.inputSuccessfully = false
 //        }
-//        if mail == "" {
-//            self.inputSuccessfully = false
-//            self.inputError = true
-//        }
         
-        checkMail(mail: self.mail)
-        tourists.forEach { tourist in
-            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || inputError /*|| phoneComplete == false*/ {
-                print(tourist)
-                print(mail)
-                    self.inputSuccessfully = false
-                
-            } else {
-                
-                    self.inputSuccessfully = true
+        for i in 0..<tourists.count {
+            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" else { return }
             }
+        self.inputSuccessfully = true
         }
-    }
 }

@@ -19,17 +19,17 @@ struct BuyerInfoView: View {
                     Text("Информация о покупателе").font(.custom("SFProDisplay-Medium", size: 22))
                     Spacer()
                 }.padding(.bottom, 10)
-                            VStack(alignment: .leading, spacing: 1) {
-                                    Text("Номер телефона").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
-                                
-
-                            }.padding(10).background(.gray.opacity(0.1)).cornerRadius(10)
+//                            VStack(alignment: .leading, spacing: 1) {
+//                                    Text("Номер телефона").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
+//                                
+//
+//                            }.padding(10).background(.gray.opacity(0.1)).cornerRadius(10)
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Почта").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
                     TextField("", text: $mail).font(.custom("SFProDisplay-Medium", size: 16))
                         //.focused($isFocused)
-                        .onSubmit {
-                            viewModelRV.checkMail(mail: mail)
+                        .onChange(of: mail) { oldValue, newValue in
+                            viewModelRV.checkMail(mail: newValue)
                             //isFocused = false
                         }
                 }.padding(10).background(viewModelRV.inputError ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
