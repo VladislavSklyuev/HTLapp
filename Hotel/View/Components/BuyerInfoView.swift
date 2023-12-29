@@ -27,10 +27,8 @@ struct BuyerInfoView: View {
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Почта").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
                     TextField("", text: $mail).font(.custom("SFProDisplay-Medium", size: 16))
-                        //.focused($isFocused)
                         .onChange(of: mail) { oldValue, newValue in
                             viewModelRV.checkMail(mail: newValue)
-                            //isFocused = false
                         }
                 }.padding(10).background(viewModelRV.inputError ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
                 HStack {

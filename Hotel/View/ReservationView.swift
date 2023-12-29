@@ -58,21 +58,16 @@ struct ReservationView: View {
                             } label: {
                                 Text("Оплатить \(String(viewModel.totalAmount.formatted())) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.white)
                             }
-                            
                         }.padding().frame(maxWidth: .infinity).background(.blue).cornerRadius(12).padding()
-                        
                     }.background(.white).cornerRadius(12)//-ОПЛАТА
                 }.frame(maxWidth: .infinity)
                     .background(Color("backGray"))
-
             }
             .onTapGesture {
                 isFocused = false
                 isFocused2 = false
-                guard isFocused else { return }
-                viewModel.checkMail(mail: mail)
-                
-                //UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                guard isFocused else { return }
+//                viewModel.checkMail(mail: mail)
             }
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()

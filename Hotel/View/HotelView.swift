@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HotelView: View {
     @StateObject var viewModel = HotelViewModel()
+    
     @State private var selectedIndex = 0
-    @State private var showNumber = false
     @State private var showRooms = false
+    
     var body: some View {
         Section {
             VStack {
@@ -19,7 +20,6 @@ struct HotelView: View {
                     Text("Отель").font(.custom("SFProDisplay-Medium", size: 18)).fontWeight(.medium)
                 }
             }
-            
             .padding()
         }
         
@@ -71,7 +71,6 @@ struct HotelView: View {
                         .background(Color("backGray"))
                         .cornerRadius(12)
                         .padding()
-
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
