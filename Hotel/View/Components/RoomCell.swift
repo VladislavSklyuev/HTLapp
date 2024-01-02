@@ -17,7 +17,7 @@ struct RoomCell: View {
             VStack(alignment: .leading, spacing: 10) {
                 RectangleView(images: $viewModel.image)
                 
-                Text(viewModel.position.name).font(.custom("SFProDisplay-Medium", size: 22)).fontWeight(.medium)
+                Text(viewModel.position.name).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                 
                 TagCloudView(tags: viewModel.position.peculiarities)
 
@@ -25,24 +25,24 @@ struct RoomCell: View {
                     
                 } label: {
                     HStack(spacing: 6) {
-                        Text("Подробнее о номере").font(.custom("SFProDisplay-Medium", size: 16))
+                        Text("Подробнее о номере").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
                         Image(systemName: "chevron.forward").bold()
                     }.padding(.leading, 12).padding(.trailing, 10).frame(height: 35).background(Color(red: 0.05, green: 0.45, blue: 1).opacity(0.1)).cornerRadius(5)
                 }
                 
                 HStack(alignment: .bottom) {
                     Text("\(String(viewModel.position.price.formatted()))₽")
-                        .font(.custom("SFProDisplay-Medium", size: 30)).fontWeight(.semibold)
+                        .font(Font.custom("SF Pro Display", size: 30).weight(.semibold))
                     Text(viewModel.position.pricePer)
                         .padding(.bottom, 3)
-                        .font(.custom("SFProDisplay-Medium", size: 16))
+                        .font(Font.custom("SF Pro Display", size: 16))
                         .foregroundStyle(.gray)
                 }.padding(.vertical, 8)
                 
                 Button {
                     showReservation.toggle()
                 } label: {
-                    Text("Выбрать номер").font(.custom("SFProDisplay-Medium", size: 16))
+                    Text("Выбрать номер").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
                         .frame(height: 48)
                         .frame(maxWidth: .infinity)
                         .background(.blue)

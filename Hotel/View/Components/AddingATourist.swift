@@ -13,7 +13,7 @@ struct AddingATourist: View {
         Section {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Добавить туриста").font(.custom("SFProDisplay-Medium", size: 22))
+                    Text("Добавить туриста").font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                     Spacer()
                     Button {
                         viewModelRV.addTourist()

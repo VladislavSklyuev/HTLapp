@@ -30,15 +30,14 @@ struct ReservationView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Image(systemName: "chevron.backward").foregroundStyle(.black).fontWeight(.semibold)
+                            Image(systemName: "chevron.backward").padding(.leading, 8).foregroundStyle(.black).fontWeight(.semibold)
                         }
                         Spacer()
-                        Text("Бронирование").font(.custom("SFProDisplay-Medium", size: 18)).fontWeight(.medium)
+                        Text("Бронирование").font(Font.custom("SF Pro Display", size: 18).weight(.medium))
                         Spacer()
                     }
                 }
-                
-                .padding()
+                .padding(.horizontal).padding(.top, 19)
             }
             
             ScrollView {
@@ -67,7 +66,7 @@ struct ReservationView: View {
                 isFocused = false
                 isFocused2 = false
 //                guard isFocused else { return }
-//                viewModel.checkMail(mail: mail)
+//                viewModel.checkTF()
             }
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()

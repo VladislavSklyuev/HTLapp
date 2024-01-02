@@ -18,15 +18,15 @@ struct ResultsView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 20) {
                     ForEach(info, id: \.self) { text in
-                        Text(text).font(.custom("SFProDisplay-Medium", size: 16))
+                        Text(text).font(Font.custom("SF Pro Display", size: 16))
                     }
                 }.foregroundStyle(.gray)
                 Spacer()
                 VStack(alignment: .trailing, spacing: 20) {
-                    Text("\(String(viewModelRV.reservation!.tourPrice)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("\(String(viewModelRV.reservation!.fuelCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("\(String(viewModelRV.reservation!.serviceCharge)) ₽").font(.custom("SFProDisplay-Medium", size: 16))
-                    Text("\(String(viewModelRV.totalAmount.formatted())) ₽").font(.custom("SFProDisplay-Medium", size: 16)).foregroundStyle(.blue)
+                    Text("\(String(viewModelRV.reservation!.tourPrice)) ₽").font(Font.custom("SF Pro Display", size: 16))
+                    Text("\(String(viewModelRV.reservation!.fuelCharge)) ₽").font(Font.custom("SF Pro Display", size: 16))
+                    Text("\(String(viewModelRV.reservation!.serviceCharge)) ₽").font(Font.custom("SF Pro Display", size: 16))
+                    Text("\(String(viewModelRV.totalAmount.formatted())) ₽").font(Font.custom("SF Pro Display", size: 16).weight(.semibold)).foregroundStyle(Color(red: 0.05, green: 0.45, blue: 1))
                     
                 }.padding(.trailing).bold()
             }.padding().frame(maxWidth: .infinity)

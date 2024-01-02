@@ -25,7 +25,7 @@ struct TouristCell: View {
                     if tur.showContent {
                         VStack(alignment: .leading) {
                             HStack {
-                                Text(tur.position).font(.custom("SFProDisplay-Medium", size: 22))
+                                Text(tur.position).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                                 Spacer()
                                 Button {
                                     viewModelRV.changeVisibility(id: tur.id)
@@ -36,8 +36,8 @@ struct TouristCell: View {
                                 }
                             }.padding(.bottom, 10)
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Имя").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Имя").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                                 
 //                                    .onChange(of: viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name) { oldValue, newValue in
 //
@@ -46,24 +46,24 @@ struct TouristCell: View {
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![1] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Фамилия").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].lastName).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Фамилия").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].lastName).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![2] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Дата рождения").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].dateOfBirth).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Дата рождения").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].dateOfBirth).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![3] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Гражданство").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].citizenship).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Гражданство").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].citizenship).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![4] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Номер загранпаспорта").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportNumber).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Номер загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportNumber).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![5] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Срок действия загранпаспорта").font(.system(size: 12)).foregroundStyle(.gray)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportDate).font(.custom("SFProDisplay-Medium", size: 16))
+                                Text("Срок действия загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportDate).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
                             }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![6] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             
                         }.padding().frame(maxWidth: .infinity)
@@ -72,7 +72,7 @@ struct TouristCell: View {
                     } else {
                         VStack(alignment: .leading) {
                             HStack(alignment: .center) {
-                                Text(tur.position).font(.custom("SFProDisplay-Medium", size: 22))
+                                Text(tur.position).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                                 Spacer()
                                 Button {
                                     viewModelRV.changeVisibility(id: tur.id)

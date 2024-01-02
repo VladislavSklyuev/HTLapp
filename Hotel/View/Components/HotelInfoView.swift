@@ -13,7 +13,7 @@ struct HotelInfoView: View {
         Section {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Label("\(String(viewModelRV.reservation!.horating)) \(viewModelRV.reservation!.ratingName)", systemImage: "star.fill").font(.custom("SFProDisplay-Medium", size: 16))
+                    Label("\(String(viewModelRV.reservation!.horating)) \(viewModelRV.reservation!.ratingName)", systemImage: "star.fill").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
                         .padding(.vertical, 6)
                         .padding(.horizontal, 8)
                         .background(Color("lightYellow"))
@@ -21,12 +21,12 @@ struct HotelInfoView: View {
                         .foregroundStyle(Color("brightYellow"))
                     Spacer()
                 }
-                Text(viewModelRV.reservation!.hotelName).font(.custom("SFProDisplay-Medium", size: 22))
+                Text(viewModelRV.reservation!.hotelName).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                 
                 Button {
                     
                 } label: {
-                    Text(viewModelRV.reservation!.hotelAdress).font(.custom("SFProDisplay-Medium", size: 14))
+                    Text(viewModelRV.reservation!.hotelAdress).font(Font.custom("SF Pro Display", size: 14).weight(.medium))
                 }
                 
             }.padding().frame(maxWidth: .infinity)
