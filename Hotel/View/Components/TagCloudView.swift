@@ -64,7 +64,7 @@ struct TagCloudView: View {
             //.padding(.trailing, 2)
             .font(Font.custom("SF Pro Display", size: 16).weight(.medium))
             .background(Color(red: 0.98, green: 0.98, blue: 0.99))
-            .foregroundColor(Color.gray)
+            .foregroundStyle(Color("gray1"))
             .cornerRadius(5)
     }
 

@@ -20,7 +20,7 @@ struct TourInfoView: View {
                     Text("Отель").font(Font.custom("SF Pro Display", size: 16)).padding(.bottom, 10)
                     Text("Номер").font(Font.custom("SF Pro Display", size: 16)).padding(.bottom, 10)
                     Text("Питание").font(Font.custom("SF Pro Display", size: 16))
-                }.foregroundStyle(Color(red: 0.51, green: 0.53, blue: 0.59))
+                }.foregroundStyle(Color("gray1"))
                 Spacer()
                 VStack(alignment: .leading, spacing: 20) {
                     Text(viewModelRV.reservation!.departure).font(Font.custom("SF Pro Display", size: 16))

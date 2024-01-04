@@ -19,8 +19,8 @@ struct FeatureButton: View {
                 Image("happy")
                 
                 VStack(alignment: .leading) {
-                    Text("Удобства").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
-                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                    Text("Удобства").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
                 
@@ -32,8 +32,8 @@ struct FeatureButton: View {
                 Image("yes")
                 
                 VStack(alignment: .leading) {
-                    Text("Что включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
-                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                    Text("Что включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
                 
@@ -45,8 +45,8 @@ struct FeatureButton: View {
                 Image("no")
                 
                 VStack(alignment: .leading) {
-                    Text("Что не включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
-                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                    Text("Что не включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
                 

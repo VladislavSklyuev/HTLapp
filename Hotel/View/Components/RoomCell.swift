@@ -14,7 +14,7 @@ struct RoomCell: View {
     
     var body: some View {
         Section {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading) {
                 RectangleView(images: $viewModel.image)
                 
                 Text(viewModel.position.name).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
@@ -25,9 +25,9 @@ struct RoomCell: View {
                     
                 } label: {
                     HStack(spacing: 6) {
-                        Text("Подробнее о номере").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
+                        Text("Подробнее о номере").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("blue1"))
                         Image(systemName: "chevron.forward").bold()
-                    }.padding(.leading, 12).padding(.trailing, 10).frame(height: 35).background(Color(red: 0.05, green: 0.45, blue: 1).opacity(0.1)).cornerRadius(5)
+                    }.padding(.leading, 12).padding(.trailing, 10).frame(height: 35).background(Color("blue1").opacity(0.1)).cornerRadius(5)
                 }
                 
                 HStack(alignment: .bottom) {
@@ -36,7 +36,7 @@ struct RoomCell: View {
                     Text(viewModel.position.pricePer)
                         .padding(.bottom, 3)
                         .font(Font.custom("SF Pro Display", size: 16))
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color("gray1"))
                 }.padding(.vertical, 8)
                 
                 Button {

@@ -12,6 +12,8 @@ struct BuyerInfoView: View {
     @FocusState private var isFocused: Bool
     @Binding var mail: String
       
+
+    
     var body: some View {
         Section {
             VStack(alignment: .leading) {
@@ -19,21 +21,39 @@ struct BuyerInfoView: View {
                     Text("Информация о покупателе").font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                     Spacer()
                 }.padding(.bottom, 10)
-//                            VStack(alignment: .leading, spacing: 1) {
-//                                    Text("Номер телефона").font(.custom("SFProDisplay-Medium", size: 12)).foregroundStyle(.gray)
-//                                // Callout 2
-//
-//                            }.padding(10).background(.gray.opacity(0.1)).cornerRadius(10)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("Почта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                    TextField("", text: $mail).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
+                    Text("Номер телефона").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                    TextField("", text: $viewModelRV.phone)
+                        .onTapGesture {
+                            viewModelRV.phone = "+7(***)***-**-**"
+                        }
+                        .keyboardType(.numberPad)
+                        .onChange(of: viewModelRV.phone) { oldValue, newValue in
+                            //print(oldValue)
+                            //print(newValue)
+                            if oldValue.count < 16 && newValue.count >= oldValue.count {
+                                viewModelRV.phone = "+7(***)***-**-**"
+                                viewModelRV.myPhone = "+7(***)***-**-**"
+                                viewModelRV.i = 3
+                            }
+                            //print("OLD", oldValue.count)
+                            //print("NEW", newValue.count)
+                            guard oldValue.count <= newValue.count else { viewModelRV.phone = viewModelRV.myPhone
+                                return }
+                            viewModelRV.phone = viewModelRV.format(with: "+X(XXX)XXX-XX-XXX", phone: viewModelRV.phone)
+                            
+                        }
+                }.padding(10).background(viewModelRV.inputErrorPhone ? Color("warning") : Color("bgColorTurTF")).cornerRadius(10)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text("Почта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                    TextField("", text: $mail).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color("ColorTurInfoText")).kerning(0.75)
                         .onChange(of: mail) { oldValue, newValue in
                             viewModelRV.checkMail(mail: newValue)
                         }
-                }.padding(10).background(viewModelRV.inputErrorMail ? Color("warning") : .gray.opacity(0.1)).cornerRadius(10)
+                }.padding(10).background(viewModelRV.inputErrorMail ? Color("warning") : Color("bgColorTurTF")).cornerRadius(10)
                 HStack {
                     Text("Эти данные никому не передаются. После оплаты мы вышлим чек на указанные вами номер и почту").font(Font.custom("SF Pro Display", size: 14))
-                }.padding(.vertical, 6).foregroundStyle(Color(red: 0.51, green: 0.53, blue: 0.59))
+                }.padding(.vertical, 6).foregroundStyle(Color("gray1"))
             }.padding().frame(maxWidth: .infinity)
         }.background(.white).cornerRadius(12)
     }

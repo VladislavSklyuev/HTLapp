@@ -42,7 +42,7 @@ struct HotelView: View {
                             
                             Text(viewModel.currentHotel.priceForIt.lowercased()).font(Font.custom("SF Pro Display", size: 16))
                                 .padding(.bottom, 3)
-                                .foregroundColor(Color(red: 0.51, green: 0.53, blue: 0.59))
+                                .foregroundStyle(Color("gray1"))
                         }.padding(.top, 8)
                     }.padding([.horizontal, .bottom])
                     

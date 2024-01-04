@@ -20,7 +20,7 @@ struct AddingATourist: View {
                     } label: {
                         VStack {
                             Image(systemName: "plus").foregroundStyle(.white).fontWeight(.semibold)
-                        }.frame(width: 30, height: 30).background(Color(red: 0.05, green: 0.45, blue: 1)).cornerRadius(6)
+                        }.frame(width: 30, height: 30).background(Color("blue1")).cornerRadius(6)
                     }
                 }
             }.padding().frame(maxWidth: .infinity)

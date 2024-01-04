@@ -10,13 +10,16 @@ import Foundation
 class ReservationViewModel: ObservableObject {
     @Published var reservation: Reservation?
     @Published var mail = ""
+    @Published var phone: String = ""
+    @Published var myPhone: String = "+7(***)***-**-**"
+    @Published var i = 3
     @Published var numberPhone = ""
-    @Published var phoneValue = ""
-    @Published var phoneComplete = true
     
     @Published var checkTextField: [Int:[Int:String]] = [0:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"], 1:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]]
     
     @Published var tourists: [Tourist] = [Tourist(showContent: true, position: "Первый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: ""), Tourist(showContent: false, position: "Второй турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")]
+    
+    @Published var inputErrorPhone = false
     @Published var inputErrorMail = false
     @Published var inputErrorTF = false
     @Published var inputSuccessfully = false
@@ -177,17 +180,68 @@ class ReservationViewModel: ObservableObject {
         self.totalAmount = total
     }
     
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone
+        //print(numbers)
+        var result = "\(numbers)"
+        
+        guard let last = result.last else { return self.myPhone }
+        
+        guard last.isNumber else { return self.myPhone }
+        var resArray = result.map { "\($0)" }
+        //print(resArray)
+        guard i < resArray.endIndex - 1 else { return self.myPhone }
+        
+        let valChar = resArray.removeLast()
+
+        if resArray[i] == "*" {
+
+            resArray[i] = "\(valChar)"
+            i = resArray.index(after: i)
+            
+        } else {
+            i = resArray.index(after: i)
+            resArray[i] = "\(valChar)"
+            i = resArray.index(after: i)
+        }
+        var myPhone = ""
+        resArray.forEach { char in
+            
+            myPhone += char
+        }
+        result = myPhone
+        
+        var numPhone = ""
+        myPhone.forEach { char in
+            if char.isNumber {
+                numPhone.append(char)
+            }
+        }
+        
+        self.numberPhone = numPhone
+        
+//        if numberPhone.count > 1 && numberPhone.count != 11 {
+//            inputErrorPhone = true
+//        }
+////        guard numberPhone.count < 1 || numberPhone.count == 11 else {
+////            print("Сотик полностью не заполнен")
+////            inputErrorPhone = true
+////            return ""
+////        }
+        self.myPhone = myPhone
+        return result
+    }
+    
     func pay() {
         checkTF()
         checkMail(mail: self.mail)
-        
-//        if phoneValue.count < 10 {
-//            self.phoneComplete = false
-//            self.inputSuccessfully = false
-//        }
-        
+        if numberPhone.count != 11 {
+            inputErrorPhone = true
+        } else {
+            inputErrorPhone = false
+        }
         for i in 0..<tourists.count {
-            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" else {
+            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" && numberPhone.count == 11 else {
                 inputErrorTF = true
                 return
             }

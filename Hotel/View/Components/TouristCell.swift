@@ -32,39 +32,40 @@ struct TouristCell: View {
                                 } label: {
                                     VStack {
                                         Image(systemName: "chevron.up").foregroundStyle(.blue).fontWeight(.semibold)
-                                    }.frame(width: 30, height: 30).background(.gray.opacity(0.1)).cornerRadius(6)
+                                    }.frame(width: 30, height: 30).background(Color(red: 0.05, green: 0.45, blue: 1).opacity(0.1)).cornerRadius(6)
                                 }
                             }.padding(.bottom, 10)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text("Имя").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                                
-//                                    .onChange(of: viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name) { oldValue, newValue in
-//
-//                                }
-                                    
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![1] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
                             
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Фамилия").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].lastName).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![2] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                                Text("Имя").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].name).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color("ColorTurInfoText")).kerning(0.75)
+                                    
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![1] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
+                            
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Дата рождения").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].dateOfBirth).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![3] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                                Text("Фамилия").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].lastName).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color("ColorTurInfoText")).kerning(0.75)
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![2] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
+                            
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Гражданство").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].citizenship).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![4] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                                Text("Дата рождения").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].dateOfBirth).font(Font.custom("SF Pro Display", size: 17)).kerning(0.17).foregroundStyle(Color("ColorTurInfoText"))
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![3] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
+                            
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Номер загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportNumber).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![5] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                                Text("Гражданство").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].citizenship).font(Font.custom("SF Pro Display", size: 17)).kerning(0.17).foregroundStyle(Color("ColorTurInfoText"))
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![4] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
+                            
                             VStack(alignment: .leading, spacing: 1) {
-                                Text("Срок действия загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color(red: 0.66, green: 0.67, blue: 0.72)).kerning(0.12)
-                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportDate).font(Font.custom("SF Pro Display", size: 16)).foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.17)).kerning(0.75)
-                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![6] == "" ? Color("warning") : .gray.opacity(0.1)).cornerRadius(6)
+                                Text("Номер загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportNumber).font(Font.custom("SF Pro Display", size: 17)).kerning(0.17).foregroundStyle(Color("ColorTurInfoText"))
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![5] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
+                            
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text("Срок действия загранпаспорта").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
+                                TextField("", text: $viewModelRV.tourists[viewModelRV.indexSearch(id: tur.id)!].passportDate).font(Font.custom("SF Pro Display", size: 17)).kerning(0.17).foregroundStyle(Color("ColorTurInfoText"))
+                            }.padding(10).background(viewModelRV.checkTextField[viewModelRV.indexSearch(id: tur.id)!]![6] == "" ? Color("warning") : Color("bgColorTurTF")).cornerRadius(6)
                             
                         }.padding().frame(maxWidth: .infinity)
 
@@ -79,7 +80,7 @@ struct TouristCell: View {
                                 } label: {
                                     VStack {
                                         Image(systemName: "chevron.down").foregroundStyle(.blue).fontWeight(.semibold)
-                                    }.frame(width: 30, height: 30).background(Color(red: 0.05, green: 0.45, blue: 1).opacity(0.1)).cornerRadius(6)
+                                    }.frame(width: 30, height: 30).background(Color("blue1").opacity(0.1)).cornerRadius(6)
                                 }
                             }
                         }.padding().frame(maxWidth: .infinity)

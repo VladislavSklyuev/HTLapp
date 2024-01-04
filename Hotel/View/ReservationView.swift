@@ -65,8 +65,7 @@ struct ReservationView: View {
             .onTapGesture {
                 isFocused = false
                 isFocused2 = false
-//                guard isFocused else { return }
-//                viewModel.checkTF()
+
             }
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()

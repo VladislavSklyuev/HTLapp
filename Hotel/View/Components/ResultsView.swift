@@ -20,13 +20,13 @@ struct ResultsView: View {
                     ForEach(info, id: \.self) { text in
                         Text(text).font(Font.custom("SF Pro Display", size: 16))
                     }
-                }.foregroundStyle(.gray)
+                }.foregroundStyle(Color("gray1"))
                 Spacer()
                 VStack(alignment: .trailing, spacing: 20) {
                     Text("\(String(viewModelRV.reservation!.tourPrice)) ₽").font(Font.custom("SF Pro Display", size: 16))
                     Text("\(String(viewModelRV.reservation!.fuelCharge)) ₽").font(Font.custom("SF Pro Display", size: 16))
                     Text("\(String(viewModelRV.reservation!.serviceCharge)) ₽").font(Font.custom("SF Pro Display", size: 16))
-                    Text("\(String(viewModelRV.totalAmount.formatted())) ₽").font(Font.custom("SF Pro Display", size: 16).weight(.semibold)).foregroundStyle(Color(red: 0.05, green: 0.45, blue: 1))
+                    Text("\(String(viewModelRV.totalAmount.formatted())) ₽").font(Font.custom("SF Pro Display", size: 16).weight(.semibold)).foregroundStyle(Color("blue1"))
                     
                 }.padding(.trailing).bold()
             }.padding().frame(maxWidth: .infinity)
