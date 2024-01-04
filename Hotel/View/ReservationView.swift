@@ -65,7 +65,11 @@ struct ReservationView: View {
             .onTapGesture {
                 isFocused = false
                 isFocused2 = false
-
+                if viewModel.numberPhone.count > 0 && viewModel.numberPhone.count != 11 {
+                    viewModel.inputErrorPhone = true
+                } else {
+                    viewModel.inputErrorPhone = false
+                }
             }
             .fullScreenCover(isPresented: $viewModel.inputSuccessfully) {
                 OrderView()
