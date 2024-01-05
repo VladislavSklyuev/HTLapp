@@ -16,7 +16,7 @@ struct FeatureButton: View {
                 Image("happy")
                 
                 VStack(alignment: .leading) {
-                    Text("Удобства").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Удобства").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(.black)
                     Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
@@ -29,7 +29,7 @@ struct FeatureButton: View {
                 Image("yes")
                 
                 VStack(alignment: .leading) {
-                    Text("Что включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Что включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(.black)
                     Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
@@ -42,7 +42,7 @@ struct FeatureButton: View {
                 Image("no")
                 
                 VStack(alignment: .leading) {
-                    Text("Что не включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(Color("black1"))
+                    Text("Что не включено").font(Font.custom("SF Pro Display", size: 16).weight(.medium)).foregroundStyle(.black)
                     Text("Самое необходимое").font(Font.custom("SF Pro Display", size: 14).weight(.medium)).foregroundStyle(Color("gray1"))
                 }
                 Spacer()
