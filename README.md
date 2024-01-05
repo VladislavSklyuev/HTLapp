@@ -1,3 +1,5 @@
 TESK TASK Booking a hotel
 
-This application is a fragment of tour booking and payment.
+Project status
+
+Public Beta. Feedback is very much welcome
