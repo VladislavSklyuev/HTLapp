@@ -137,8 +137,6 @@ class ReservationViewModel: ObservableObject {
             return
         }
         
-
-        
         let smallString = String(suffix)
         let rangeSuffix = smallString.range(of: ".")
 
@@ -182,7 +180,6 @@ class ReservationViewModel: ObservableObject {
     
     func format(with mask: String, phone: String) -> String {
         let numbers = phone
-        //print(numbers)
         var result = "\(numbers)"
         
         guard let last = result.last else { return self.myPhone }
@@ -219,15 +216,6 @@ class ReservationViewModel: ObservableObject {
         }
         
         self.numberPhone = numPhone
-        
-//        if numberPhone.count > 1 && numberPhone.count != 11 {
-//            inputErrorPhone = true
-//        }
-////        guard numberPhone.count < 1 || numberPhone.count == 11 else {
-////            print("Сотик полностью не заполнен")
-////            inputErrorPhone = true
-////            return ""
-////        }
         self.myPhone = myPhone
         return result
     }

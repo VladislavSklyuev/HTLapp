@@ -24,9 +24,6 @@ struct BuyerInfoView: View {
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Номер телефона").font(Font.custom("SF Pro Display", size: 12)).foregroundStyle(Color("ColorTurInfoTextUP")).kerning(0.12)
                     TextField("", text: $viewModelRV.phone)
-//                        .onTapGesture {
-//                            viewModelRV.phone = "+7(***)***-**-**"
-//                        }
                         .keyboardType(.numberPad)
                         .onChange(of: viewModelRV.phone) { oldValue, newValue in
                             //print(oldValue)

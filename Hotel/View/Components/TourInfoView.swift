@@ -32,7 +32,6 @@ struct TourInfoView: View {
                     Text(viewModelRV.reservation!.nutrition).font(Font.custom("SF Pro Display", size: 16))
                 }.padding(.leading, 30)
             }.padding().frame(maxWidth: .infinity)
-            
         }.background(.white).cornerRadius(12)
     }
 }

@@ -30,7 +30,6 @@ struct ResultsView: View {
                     
                 }.padding(.trailing).bold()
             }.padding().frame(maxWidth: .infinity)
-
         }.background(.white).cornerRadius(12)
     }
 }
