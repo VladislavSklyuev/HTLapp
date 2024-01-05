@@ -19,7 +19,7 @@ class RoomViewModel: ObservableObject {
     func fetchCurrentRoom() {
         Task {
             do {
-                let room = try await NetworkService.shared.getRoom()
+                let room: Room = try await NetworkService.shared.fetchingData(url: currentURL.room.rawValue)
                 DispatchQueue.main.async {
                     self.currentRoom = room
                    

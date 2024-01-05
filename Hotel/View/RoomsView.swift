@@ -22,15 +22,14 @@ struct RoomsView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Image(systemName: "chevron.backward").foregroundStyle(.black).fontWeight(.semibold)
+                            Image(systemName: "chevron.backward").padding(.leading, 8).foregroundStyle(.black).fontWeight(.semibold)
                         }
                         Spacer()
-                        Text(hotelViewModel.currentHotel.name).font(.custom("SFProDisplay-Medium", size: 18)).fontWeight(.medium)
+                        Text(hotelViewModel.currentHotel.name).font(Font.custom("SF Pro Display", size: 18).weight(.medium))
                         Spacer()
                     }
                 }
-                
-                .padding()
+                .padding(.horizontal).padding(.top, 19)
             }
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 4) {
@@ -42,14 +41,6 @@ struct RoomsView: View {
                 }.background(Color("backGray"))
             }
             .background(.white)
-//            .navigationBarBackButtonHidden()
-//            .navigationTitle(hotelViewModel.currentHotel.name)
-//            .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
-}
-
-#Preview {
-    RoomsView()
 }

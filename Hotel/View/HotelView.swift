@@ -9,84 +9,56 @@ import SwiftUI
 
 struct HotelView: View {
     @StateObject var viewModel = HotelViewModel()
+    
     @State private var selectedIndex = 0
-    @State private var showNumber = false
     @State private var showRooms = false
+    
     var body: some View {
         Section {
-            VStack {
-                HStack {
-                    Text("Отель").font(.custom("SFProDisplay-Medium", size: 18)).fontWeight(.medium)
-                }
-            }
-            
-            .padding()
+            Spacer()
+                    Text("Отель").font(Font.custom("SF Pro Display", size: 18).weight(.medium))
         }
         
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-
                 Section {
                     VStack(alignment: .leading, spacing: 10) {
                         RectangleView(images: $viewModel.image)
-                        //RectangleView(selectedIndex: $selectedIndex, images: $viewModel.image)
-//                        TabView {
-//                            if viewModel.image.isEmpty {
-//                                ProgressView()
-//                            } else {
-//                                ForEach(viewModel.image, id: \.self) { image in
-//                                    Image(uiImage: image).resizable().aspectRatio(contentMode: .fill)
-//                                }
-//                            }
-//                        }.frame(height: 260)
-//                            .tabViewStyle(.page)
-//                            .cornerRadius(12)
-//                            .padding(.bottom, 8)
                         
-                        Label("\(String(viewModel.currentHotel.rating)) \(viewModel.currentHotel.ratingName)", systemImage: "star.fill").font(.custom("SFProDisplay-Medium", size: 16)).fontWeight(.medium)
+                        Label("\(String(viewModel.currentHotel.rating)) \(viewModel.currentHotel.ratingName)", systemImage: "star.fill").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
                             .padding(.vertical, 6)
                             .padding(.horizontal, 8)
                             .background(Color("lightYellow"))
                             .cornerRadius(6)
                             .foregroundStyle(Color("brightYellow"))
-                        Text(viewModel.currentHotel.name).font(.custom("SFProDisplay-Medium", size: 22)).fontWeight(.medium)
+                        Text(viewModel.currentHotel.name).font(Font.custom("SF Pro Display", size: 22).weight(.medium))
 
                         Button(viewModel.currentHotel.adress) { }
-                            .font(.custom("SFProDisplay-Medium", size: 14)).fontWeight(.medium)
+                            .font(Font.custom("SF Pro Display", size: 14).weight(.medium))
                             .foregroundStyle(.blue)
                         HStack(alignment: .bottom) {
                             Text("от \(String(viewModel.currentHotel.minimalPrice.formatted())) ₽")
-                                .font(.custom("SFProDisplay-Medium", size: 30).weight(.semibold))
-                                
-                            Text(viewModel.currentHotel.priceForIt).font(.custom("SFProDisplay-Medium", size: 16))
+                                .font(Font.custom("SF Pro Display", size: 30).weight(.medium))
+                            
+                            Text(viewModel.currentHotel.priceForIt.lowercased()).font(Font.custom("SF Pro Display", size: 16))
                                 .padding(.bottom, 3)
-                                .foregroundStyle(.gray)
+                                .foregroundStyle(Color("gray1"))
                         }.padding(.top, 8)
-                    }.padding()
+                    }.padding([.horizontal, .bottom])
                     
                 }.background(.white)
                     .cornerRadius(12, corners: .bottomLeft)
                     .cornerRadius(12, corners: .bottomRight)
                 Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Об отеле").font(.custom("SFProDisplay-Medium", size: 22)).fontWeight(.medium)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Об отеле").font(Font.custom("SF Pro Display", size: 22).weight(.medium))
                         TagCloudView(tags: viewModel.currentHotel.aboutTheHotel.peculiarities)
                         
-                        Text(viewModel.currentHotel.aboutTheHotel.description).font(.custom("SFProDisplay-Medium", size: 16))
-                        VStack {
-                            FeatureButton(image: "happy", title: "Удобства", subtitle: "Самое необходимое", hasDivider: true)
-                            
-                            FeatureButton(image: "yes", title: "Что включено", subtitle: "Самое необходимое", hasDivider: true)
-                            
-                            FeatureButton(image: "no", title: "Что не включено", subtitle: "Самое необходимое", hasDivider: false)
-                        }
-                        .padding()
-                        .background(Color("backGray"))
-                        .cornerRadius(12)
-                        .padding()
-
+                        Text(viewModel.currentHotel.aboutTheHotel.description).font(Font.custom("SF Pro Display", size: 16).weight(.medium))
+                          .foregroundColor(.black.opacity(0.9))
+                          .frame(width: 343, alignment: .topLeading)
+                        FeatureButton()
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
                 }.background(.white)
                     .cornerRadius(12)
@@ -94,7 +66,7 @@ struct HotelView: View {
                     Button {
                         showRooms.toggle()
                     } label: {
-                        Text("К выбору номера")
+                        Text("К выбору номера").font(Font.custom("SF Pro Display", size: 16).weight(.medium))
                             .frame(height: 48)
                             .frame(maxWidth: .infinity)
                             .background(.blue)
@@ -105,7 +77,6 @@ struct HotelView: View {
 
                 }.background(.white)
             }
-            //.onAppear(perform:viewModel.downLoadPhoto)
             .background(Color("backGray"))
         }
         .background(.white)
@@ -114,9 +85,6 @@ struct HotelView: View {
         }
     }
 }
-
 #Preview {
-    NavigationView {
-        HotelView()
-    }
+    HotelView()
 }

@@ -10,14 +10,18 @@ import Foundation
 class ReservationViewModel: ObservableObject {
     @Published var reservation: Reservation?
     @Published var mail = ""
+    @Published var phone: String = ""
+    @Published var myPhone: String = "+7(***)***-**-**"
+    @Published var i = 3
     @Published var numberPhone = ""
-    @Published var phoneValue = ""
-    @Published var phoneComplete = true
     
     @Published var checkTextField: [Int:[Int:String]] = [0:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"], 1:[0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]]
     
     @Published var tourists: [Tourist] = [Tourist(showContent: true, position: "Первый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: ""), Tourist(showContent: false, position: "Второй турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")]
-    @Published var inputError = false
+    
+    @Published var inputErrorPhone = false
+    @Published var inputErrorMail = false
+    @Published var inputErrorTF = false
     @Published var inputSuccessfully = false
     @Published var totalAmount: Int = 0
     
@@ -28,7 +32,7 @@ class ReservationViewModel: ObservableObject {
     func fetchReservation() {
         Task {
             do {
-                let reservation = try await NetworkService.shared.getReservation()
+                let reservation: Reservation = try await NetworkService.shared.fetchingData(url: currentURL.reservation.rawValue)
                 DispatchQueue.main.async {
                     self.reservation = reservation
                     self.calculateTheTotal()
@@ -42,7 +46,6 @@ class ReservationViewModel: ObservableObject {
     func indexSearch(id: UUID) -> Int? {
         let arr = self.tourists
         if let index = arr.firstIndex(where: { $0.id == id }) {
-            //print(index)
             return index
         }
         return nil
@@ -52,11 +55,7 @@ class ReservationViewModel: ObservableObject {
         if let index = indexSearch(id: id) {
             self.tourists[index].showContent.toggle()
         }
-//        }
-        //print(id)
-        print(tourists)
     }
-    
     
     func addTourist() {
         switch tourists.count {
@@ -100,38 +99,40 @@ class ReservationViewModel: ObservableObject {
         }
     }
     
-    func checkMail(string: String) {
-        let string = string
+    func checkMail(mail: String) {
+        let string = mail
+        let invalidCharacters = CharacterSet.alphanumerics.inverted
+        
         guard string.contains("@") else { print("Нет собачки")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
+        
+        guard string.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil else { print("Русский символ недопустим!")
+            inputErrorMail = true
+            self.mail = ""
+            return
+        }
+        
         let range = string.range(of: "@")
         let suffix = string.suffix(from: range!.upperBound)
         let prefix = string.prefix(upTo: range!.lowerBound)
         
-        guard prefix.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil && suffix.range(of: "[А-Яа-яЁё]", options: .regularExpression) == nil else { print("Русский символ недопустим!")
-            inputError = true
-            self.mail = ""
-            return
-        }
-        
         guard prefix.count >= 2 && suffix.count >= 5 else { print("Короткий префикс или суфикс")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
-        
-        guard prefix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
-            inputError = true
+        guard prefix.rangeOfCharacter(from: invalidCharacters) == nil else { print("Некорректный символ")
+            inputErrorMail = true
             self.mail = ""
             return
         }
         
         guard suffix.contains(".") else { print("Нет точки")
-            inputError = true
+            inputErrorMail = true
             self.mail = ""
             return
         }
@@ -141,18 +142,20 @@ class ReservationViewModel: ObservableObject {
 
         let smallSuffix = smallString.suffix(from: rangeSuffix!.upperBound)
         let smallPrefix = smallString.prefix(upTo: rangeSuffix!.lowerBound)
-        guard smallPrefix.count >= 2 && smallSuffix.count >= 2 else { print("Короткий подсуффикс или подпрефикс")
-            inputError = true
+        guard smallPrefix.count >= 2 && smallSuffix.count >= 2 else { print("Короткий подсуффикс или подпреффикс")
+            inputErrorMail = true
             self.mail = ""
             return
         }
-        guard smallPrefix.allSatisfy({$0.isLetter}) && smallSuffix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
-            inputError = true
+        
+        guard smallSuffix.allSatisfy({$0.isLetter}) && smallPrefix.allSatisfy({$0.isLetter}) else { print("Некорректный символ")
+            inputErrorMail = true
             self.mail = ""
             return
         }
+
         print("p2: \(smallPrefix) s2: \(smallSuffix)")
-        inputError = false
+        inputErrorMail = false
         self.mail = string
         print(mail)
     }
@@ -175,27 +178,62 @@ class ReservationViewModel: ObservableObject {
         self.totalAmount = total
     }
     
-    func pay() {
-        checkTF()
-        //print(checkTextField)
-        if phoneValue.count < 10 {
-            self.phoneComplete = false
-            self.inputSuccessfully = false
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone
+        var result = "\(numbers)"
+        
+        guard let last = result.last else { return self.myPhone }
+        
+        guard last.isNumber else { return self.myPhone }
+        var resArray = result.map { "\($0)" }
+        //print(resArray)
+        guard i < resArray.endIndex - 1 else { return self.myPhone }
+        
+        let valChar = resArray.removeLast()
+
+        if resArray[i] == "*" {
+
+            resArray[i] = "\(valChar)"
+            i = resArray.index(after: i)
+            
+        } else {
+            i = resArray.index(after: i)
+            resArray[i] = "\(valChar)"
+            i = resArray.index(after: i)
         }
-        if mail == "" {
-            self.inputSuccessfully = false
-            self.inputError = true
+        var myPhone = ""
+        resArray.forEach { char in
+            
+            myPhone += char
         }
-        tourists.forEach { tourist in
-            if tourist.name.isEmpty || tourist.lastName.isEmpty || tourist.dateOfBirth.isEmpty || tourist.citizenship.isEmpty || tourist.passportDate.isEmpty || tourist.passportNumber.isEmpty || mail == "" || phoneComplete == false {
-                print(tourist)
-                print(mail)
-                
-                    self.inputSuccessfully = false
-                
-            } else {
-                    self.inputSuccessfully = true
+        result = myPhone
+        
+        var numPhone = ""
+        myPhone.forEach { char in
+            if char.isNumber {
+                numPhone.append(char)
             }
         }
+        
+        self.numberPhone = numPhone
+        self.myPhone = myPhone
+        return result
     }
+    
+    func pay() {
+        checkTF()
+        checkMail(mail: self.mail)
+        if numberPhone.count != 11 {
+            inputErrorPhone = true
+        } else {
+            inputErrorPhone = false
+        }
+        for i in 0..<tourists.count {
+            guard tourists[i].name != "" && tourists[i].lastName != "" && tourists[i].dateOfBirth != "" && tourists[i].citizenship != "" && tourists[i].passportDate != "" && tourists[i].passportNumber != "" && mail != "" && numberPhone.count == 11 else {
+                inputErrorTF = true
+                return
+            }
+        }
+        self.inputSuccessfully = true
+        }
 }

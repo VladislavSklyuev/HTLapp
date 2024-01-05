@@ -20,7 +20,7 @@ class HotelViewModel: ObservableObject {
 
         Task {
             do {
-                let hotel = try await NetworkService.shared.getHotel()
+                let hotel: Hotel = try await NetworkService.shared.fetchingData(url: currentURL.hotel.rawValue)
                 
                 DispatchQueue.main.async {
                     self.currentHotel = hotel
