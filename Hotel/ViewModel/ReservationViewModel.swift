@@ -186,7 +186,6 @@ class ReservationViewModel: ObservableObject {
         
         guard last.isNumber else { return self.myPhone }
         var resArray = result.map { "\($0)" }
-        //print(resArray)
         guard i < resArray.endIndex - 1 else { return self.myPhone }
         
         let valChar = resArray.removeLast()

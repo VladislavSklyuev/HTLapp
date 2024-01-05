@@ -26,19 +26,14 @@ struct BuyerInfoView: View {
                     TextField("", text: $viewModelRV.phone)
                         .keyboardType(.numberPad)
                         .onChange(of: viewModelRV.phone) { oldValue, newValue in
-                            //print(oldValue)
-                            //print(newValue)
                             if oldValue.count < 16 && newValue.count >= oldValue.count {
                                 viewModelRV.phone = "+7(***)***-**-**"
                                 viewModelRV.myPhone = "+7(***)***-**-**"
                                 viewModelRV.i = 3
                             }
-                            //print("OLD", oldValue.count)
-                            //print("NEW", newValue.count)
                             guard oldValue.count <= newValue.count else { viewModelRV.phone = viewModelRV.myPhone
                                 return }
                             viewModelRV.phone = viewModelRV.format(with: "+X(XXX)XXX-XX-XXX", phone: viewModelRV.phone)
-                            
                         }
                 }.padding(10).background(viewModelRV.inputErrorPhone ? Color("warning") : Color("bgColorTurTF")).cornerRadius(10)
                 VStack(alignment: .leading, spacing: 1) {

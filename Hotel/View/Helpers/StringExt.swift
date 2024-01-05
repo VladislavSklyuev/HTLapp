@@ -25,6 +25,4 @@ extension String {
         }
         return result
     }
-    
-    
 }

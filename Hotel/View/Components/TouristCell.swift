@@ -10,7 +10,6 @@ import SwiftUI
 struct TouristCell: View {
     @EnvironmentObject var viewModelRV: ReservationViewModel
     @State private var show = true
-    //@FocusState private var isFocused: Bool
     
     @State  private var name: String = ""
     @State  private var index: Int?
@@ -124,7 +123,6 @@ struct TouristCell: View {
                     }
                 }
             }
-                
         }.background(.white).cornerRadius(12)
     }
 }

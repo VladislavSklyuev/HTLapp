@@ -74,7 +74,6 @@ struct HotelView: View {
                             .cornerRadius(12)
                             .padding()
                     }
-
                 }.background(.white)
             }
             .background(Color("backGray"))
@@ -84,7 +83,4 @@ struct HotelView: View {
             RoomsView().environmentObject(viewModel)
         }
     }
-}
-#Preview {
-    HotelView()
 }
