@@ -10,7 +10,7 @@ import UIKit
 
 class HotelViewModel: ObservableObject {
     @Published var image: [UIImage] = []
-    @Published var currentHotel: Hotel = Hotel(id: 0, name: "", adress: "", minimalPrice: 0, priceForIt: "", rating: 0, ratingName: "", imageUrls: [], aboutTheHotel: .init(description: "", peculiarities: []))
+    @Published var currentHotel: Hotel?
     
     init() {
         fetchCurrentHotel()
@@ -30,16 +30,14 @@ class HotelViewModel: ObservableObject {
             } catch {
                 //print(error)
             }
-            
         }
     }
     
     func loadImage() {
+        guard let hotel = self.currentHotel else { return }
         DispatchQueue.global().async {
-            
-            
-            for i in 0..<self.currentHotel.imageUrls.count {
-                guard let url = URL(string: self.currentHotel.imageUrls[i]) else { continue }
+            for i in 0..<hotel.imageUrls.count {
+                guard let url = URL(string: hotel.imageUrls[i]) else { continue }
                 
                 let group = DispatchGroup()
                 group.enter()

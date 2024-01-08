@@ -13,7 +13,7 @@ struct RoomsView: View {
     @EnvironmentObject var hotelViewModel: HotelViewModel
     
     var body: some View {
-        if viewModel.currentRoom == nil {
+        if viewModel.currentRoom == nil || hotelViewModel.currentHotel == nil {
             ProgressView()
         } else {
             Section {
@@ -25,7 +25,7 @@ struct RoomsView: View {
                             Image(systemName: "chevron.backward").padding(.leading, 8).foregroundStyle(.black).fontWeight(.semibold)
                         }
                         Spacer()
-                        Text(hotelViewModel.currentHotel.name).font(Font.custom("SF Pro Display", size: 18).weight(.medium))
+                        Text(hotelViewModel.currentHotel!.name).font(Font.custom("SF Pro Display", size: 18).weight(.medium))
                         Spacer()
                     }
                 }

@@ -22,7 +22,6 @@ class RoomViewModel: ObservableObject {
                 let room: Room = try await NetworkService.shared.fetchingData(url: currentURL.room.rawValue)
                 DispatchQueue.main.async {
                     self.currentRoom = room
-                   
                 }
             } catch {
                 //print(error)

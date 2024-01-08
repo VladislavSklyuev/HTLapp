@@ -9,10 +9,6 @@ import SwiftUI
 
 struct TouristCell: View {
     @EnvironmentObject var viewModelRV: ReservationViewModel
-    @State private var show = true
-    
-    @State  private var name: String = ""
-    @State  private var index: Int?
     
     var body: some View {
         Section {

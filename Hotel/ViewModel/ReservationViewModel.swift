@@ -58,44 +58,45 @@ class ReservationViewModel: ObservableObject {
     }
     
     func addTourist() {
+        let dict = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
         switch tourists.count {
         case 2:
             let tourist = Tourist(showContent: false, position: "Третий турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 3:
             let tourist = Tourist(showContent: false, position: "Четвертый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 4:
             let tourist = Tourist(showContent: false, position: "Пятый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 5:
             let tourist = Tourist(showContent: false, position: "Шестой турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 6:
             let tourist = Tourist(showContent: false, position: "Седьмой турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 7:
             let tourist = Tourist(showContent: false, position: "Восьмой турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 8:
             let tourist = Tourist(showContent: false, position: "Девятый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         case 9:
             let tourist = Tourist(showContent: false, position: "Десятый турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         default:
             let tourist = Tourist(showContent: false, position: "Ещё один турист", name: "", lastName: "", dateOfBirth: "", citizenship: "", passportNumber: "", passportDate: "")
             self.tourists.append(tourist)
-            self.checkTextField[tourists.count - 1] = [0:"",1:"0",2:"0",3:"0",4:"0",5:"0",6:"0"]
+            self.checkTextField[tourists.count - 1] = dict
         }
     }
     
@@ -119,7 +120,7 @@ class ReservationViewModel: ObservableObject {
         let suffix = string.suffix(from: range!.upperBound)
         let prefix = string.prefix(upTo: range!.lowerBound)
         
-        guard prefix.count >= 2 && suffix.count >= 5 else { print("Короткий префикс или суфикс")
+        guard prefix.count >= 2 && suffix.count >= 5 else { print("Короткий префикс или суффикс")
             inputErrorMail = true
             self.mail = ""
             return
@@ -154,10 +155,8 @@ class ReservationViewModel: ObservableObject {
             return
         }
 
-        print("p2: \(smallPrefix) s2: \(smallSuffix)")
         inputErrorMail = false
         self.mail = string
-        print(mail)
     }
     
     func checkTF() {
