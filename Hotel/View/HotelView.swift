@@ -13,14 +13,16 @@ struct HotelView: View {
     @State private var showRooms = false
     
     var body: some View {
-        Section {
-            Spacer()
-                    Text("Отель").font(Font.custom("SF Pro Display", size: 18).weight(.medium))
-        }
         
         if viewModel.currentHotel == nil {
             ProgressView()
         } else {
+            
+            Section {
+                Spacer()
+                        Text("Отель").font(Font.custom("SF Pro Display", size: 18).weight(.medium))
+            }
+            
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
                     Section {
